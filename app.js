@@ -206,20 +206,17 @@ function appMenu() {
             },
             {
                 type: "input",
-                name: "internOfficeNumber",
-                message: "What is your Intern's office number?",
+                name: "internSchool",
+                message: "What is your Intern's School?",
                 validate: answer => {
-                    const pass = answer.match(
-                        /^[1-9]\d*$/
-                    );
-                    if (pass) {
+                    if (answer !== "") {
                         return true;
                     }
-                    return "Please enter a positive number greater than zero.";
-                }
+                    return "Please enter at least one character.";
+                },
             },
         ]).then(answers => {
-            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internOfficeNumber);
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
             teamMembers.push(intern);
             idArray.push(answers.internId);
             createTeam();
